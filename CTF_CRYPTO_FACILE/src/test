@@ -1,0 +1,36 @@
+Défi 1: ROT13
+
+Description
+Nous avons découvert un nouveau type de chiffrement. Pouvez-vous briser le code secret et découvrir son message caché ? Le message chiffré est le suivant :
+
+cadmecepdadcpndbdceapndadmdkdkecdldgdadoebdgdmdleapnahpneadcepeddceceppndgdlebdcepdldcpnaapn
+
+Votre tâche est de décrypter ce message. Utilisez vos compétences en cryptanalyse pour retrouver le message original. Une fois que vous aurez déchiffré le message, encadrez la solution avec BackdoorCTF{}.
+
+Outils Fournis
+Le message a été chiffré en utilisant le  script rot13_b16.py. Vous devrez comprendre et inverser le processus utilisé dans ce script pour réussir à décrypter le message.Défi 1: ROT13
+
+Titre : Déchiffrement d'une Alerte de Sécurité de l'Université XYZ
+
+Consignes : Un message critique concernant la sécurité de l'Université XYZ a été chiffré à l'aide de l'algorithme RSA. Votre mission est de déchiffrer ce message pour révéler l'alerte de sécurité et le code d'urgence. Utilisez vos compétences en cryptographie pour inverser le processus de chiffrement et restaurer le message d'origine.
+
+Message Chiffré :
+1992, 1906, 2160, 745, 2235, 205, 2209, 2412, 1632, 2570, 3179, 745, 3179, 884, 205, 2209, 1992, 1773, 205, 2209, 884, 1313, 281, 884, 205, 2209, 1313, 1992, 205, 1379, 1992, 745, 1956, 2160, 2235, 3179, 2578, 1313, 2412, 1230, 3179, 884, 205, 2209, 1992, 1345, 99, 1668, 2825, 1992, 641, 2185, 2412, 2412, 1313, 281, 884, 3179, 1369, 1992, 612, 2412, 205, 2209, 2578, 2160, 1992, 745, 1313, 1992, 2906, 1802, 501, 2906, 538, 1992, 205, 1379, 1992, 538, 368, 2170, 624, 624, 2825, 1992, 1486, 2235, 1369, 2185, 2412, 2271, 1313, 1830, 1992, 745, 1313, 1230, 1992, 1773, 205, 2209, 612, 1632, 2412, 884, 1313, 2271, 1313, 2235, 884, 1230, 2825, 1992, 641, 2185, 1773, 1313, 1992, 1773, 1956, 2160, 2412, 2923, 1313, 2235, 281, 1313, 1992, 436, 1992, 1345, 99, 1668, 921, 529, 1175, 538, 2906, 2680, 1313, 281, 2825
+
+Clé Publique : e = 65537
+n= 3233
+
+Objectif : Déchiffrez le message pour découvrir les détails de la vulnérabilité et le code d'urgence.
+
+Règles : Aucune attaque sur les infrastructures réelles n'est permise. Utilisez uniquement les méthodes cryptographiques pour résoudre ce défi.
+
+
+
+éfi de Stéganographie : Le Secret Caché de l'Université XYZ
+
+Énigme :
+
+Au cœur du réseau de l'Université XYZ, une image ordinaire cache un secret extraordinaire. Cette image, familière aux yeux de tous, renferme en réalité des informations cruciales sur les activités suspectes qui menacent la sécurité du réseau de l'université.
+
+Votre mission est de révéler ces informations cachées. Utilisez vos compétences en stéganographie pour déchiffrer le message secret intégré dans l'image. Ce message contient des indices vitaux sur l'origine des communications cryptées qui parcourent le réseau de l'université.
+

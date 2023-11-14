@@ -1,0 +1,36 @@
+import string
+
+# Configuration initiale
+LOWERCASE_OFFSET = ord("a")
+ALPHABET = string.ascii_lowercase[:16]
+
+# Fonction d'encodage en base 16
+def b16_encode(plain):
+    enc = ""
+    for c in plain:
+        binary = "{0:08b}".format(ord(c))
+        enc += ALPHABET[int(binary[:4], 2)]
+        enc += ALPHABET[int(binary[4:], 2)]
+    return enc
+
+# Fonction ROT13
+def rot13(c):
+    if c in ALPHABET:
+        return ALPHABET[(ord(c) - LOWERCASE_OFFSET + 13) % len(ALPHABET)]
+    return c
+
+# Fonction principale pour chiffrer un message
+def encrypt_message(message):
+    b16 = b16_encode(message)
+    enc = ""
+    for c in b16:
+        enc += rot13(c)
+    return enc
+
+# Message à chiffrer 
+message_to_encrypt = "exemple msg "
+
+# Chiffrement et affichage du message chiffré
+encrypted_message = encrypt_message(message_to_encrypt)
+print("Message chiffré:", encrypted_message)
+
