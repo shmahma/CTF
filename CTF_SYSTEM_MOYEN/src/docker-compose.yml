@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+  ftp-server:
+    build:
+      context: .
+      dockerfile: Dockerfile3
+    container_name: ftp
+    ports:
+      - "20:20"
+      - "21:21"
+      - "47400-47470:47400-47470"
+    environment:
+      - FTP_USER=john
+      - FTP_PASS=Kikawa_9123
+      - PASV_ADDRESS=127.0.0.1
+  machine:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "22:22"
+  web-server:
+    build:
+      context: .
+      dockerfile: Dockerfile2
+    container_name: web
+    restart: always
+    ports:
+      - "80:80"
