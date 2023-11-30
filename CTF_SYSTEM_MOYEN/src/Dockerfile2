@@ -1,3 +1,4 @@
 FROM nginx:latest
 
 COPY ./info.html /usr/share/nginx/html
+COPY ./index.html /usr/share/nginx/html

