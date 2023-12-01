@@ -19,13 +19,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             "root",
             "super-secret-password"
         );
+	$pdo->query("CREATE TABLE IF NOT EXISTS Persons (username varchar(255), password varchar(255))");
+	$pdo->query("INSERT IGNORE INTO Persons VALUES ('admin','hello')");
 
         $query = "SELECT * FROM Persons WHERE username = '$username' AND password= '$password'";
         $user = $pdo->query($query)->fetch(PDO::FETCH_ASSOC);
 
         if ($user) {
-            header("Location: bdd.php");
-            exit();
+            echo "{Flag-Wf:ZEF4R533JF?SOKJDSD9FVSFVS}";
         } else {
             $errorMessage = "Nom d'utilisateur ou mot de passe incorrect";
         }

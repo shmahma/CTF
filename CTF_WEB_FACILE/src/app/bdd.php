@@ -17,15 +17,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if (isset($_POST['query'])) {
             $query = $_POST['query'];
-
+	    $pdo->query("CREATE TABLE IF NOT EXISTS Indices ( indice varchar(255), flag varchar(255))");
+	    $pdo->query("Insert IGNORE INTO Indices Values ('GET#3','{FLAG-WF:DDFVDFGEG5T54GTGT}')");
             $result = $pdo->query("SELECT * FROM Indices WHERE indice = '$query'");
+
             $rows = $result->fetchAll(PDO::FETCH_ASSOC);
 
             if (count($rows) > 0) {
                 echo '<pre>';
                 foreach ($rows as $row) {
 			echo '<p style="color: blue; text-align: center;">Returned Value: ' . $row['flag'] . '</p>';
-
+			break;
                 }
                 echo '</pre>';
             } else {
