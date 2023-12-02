@@ -20,7 +20,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             "super-secret-password"
         );
 	$pdo->query("CREATE TABLE IF NOT EXISTS Persons (username varchar(255), password varchar(255))");
-	$pdo->query("INSERT IGNORE INTO Persons VALUES ('admin','hello')");
+	$exist = $pdo->query("SELECT * FROM Persons WHERE username='admin'")->fetchAll(PDO::FETCH_ASSOC);
+            if (count($exist) == 0){
+		$pdo->query("INSERT IGNORE INTO Persons VALUES ('admin','hello')");
+            }
 
         $query = "SELECT * FROM Persons WHERE username = '$username' AND password= '$password'";
         $user = $pdo->query($query)->fetch(PDO::FETCH_ASSOC);

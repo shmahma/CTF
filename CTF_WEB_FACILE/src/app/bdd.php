@@ -1,3 +1,4 @@
+
 <?php
 
 $host = "mysql";
@@ -18,8 +19,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (isset($_POST['query'])) {
             $query = $_POST['query'];
 	    $pdo->query("CREATE TABLE IF NOT EXISTS Indices ( indice varchar(255), flag varchar(255))");
-	    $pdo->query("Insert IGNORE INTO Indices Values ('GET#3','{FLAG-WF:DDFVDFGEG5T54GTGT}')");
-            $result = $pdo->query("SELECT * FROM Indices WHERE indice = '$query'");
+	    $exist = $pdo->query("SELECT * FROM Indices WHERE indice='GET#3'")->fetchAll(PDO::FETCH_ASSOC);
+	    if (count($exist) == 0){
+            	$pdo->query("Insert IGNORE INTO Indices Values ('GET#3','{FLAG-WF:DDFVDFGEG5T54GTGT}')");
+            }
+	    $result = $pdo->query("SELECT * FROM Indices WHERE indice = '$query'");
 
             $rows = $result->fetchAll(PDO::FETCH_ASSOC);
 
