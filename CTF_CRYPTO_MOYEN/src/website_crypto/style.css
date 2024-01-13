@@ -1,0 +1,23 @@
+/* Reset des marges et paddings */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/* Styles généraux */
+.black-bg {
+    background-color: black;
+}
+
+.white-text {
+    color: white;
+}
+
+.blue-button {
+    background-color: blue;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    margin-right: 10px;
+    display: inline-block;
+}
