@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  web:
+    image: ctf-web-image-docker  
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:80"  
+    volumes:
+      - ./website:/var/www/html/ctf_moyen_web1  # Chemin local du code src
+    restart: always
+
