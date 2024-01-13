@@ -1,0 +1,11 @@
+version: '3'
+services:
+  my-service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: my-container
+    ports:
+      - "8080:8080"  # Remplacer port
+    volumes:
+      - ./data:/usr/src/app/data  # stockage dans un volume local?
