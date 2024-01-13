@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Search</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f3c5d3; /* Couleur de fond rose pâle */
+            color: #444;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .welcome-message {
+            text-align: center;
+            color: #333; /* Couleur du texte */
+            margin-bottom: 20px; /* Espace entre le message de bienvenue et la barre de recherche */
+        }
+
+        .search-container {
+            background: #ffffff; /* Arrière-plan blanc pour le formulaire */
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1),
+                        inset 5px 5px 15px rgba(255, 255, 255, 0.6),
+                        inset -5px -5px 15px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            border: none;
+            border-radius: 15px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            color: #333;
+        }
+
+        .search-icon {
+            padding: 15px;
+            background: #f3c5d3;
+            border-radius: 50%;
+            margin-left: 10px;
+            box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .search-icon::before {
+            content: '\1F50D';
+            font-size: 24px;
+            color: #333;
+        }
+
+        /* Style supplémentaire si nécessaire */
+    </style>
+</head>
+<body>
+    <div class="welcome-message">
+        <h1>Welcome to User Search</h1>
+        <p>Find your favorite users quickly and easily.</p>
+    </div>
+    
+    <form action="/search" method="get" class="search-container">
+        <input class="search-input" type="text" name="query" placeholder="Searching..." required>
+        <button type="submit" class="search-icon"></button>
+    </form>
+
+</body>
+</html>

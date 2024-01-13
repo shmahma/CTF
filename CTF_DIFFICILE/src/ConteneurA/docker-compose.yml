@@ -1,0 +1,28 @@
+version: '3.8'
+services:
+  flask:
+    build:
+      context: ./code_src
+      dockerfile: Dockerfile.flask
+    volumes:
+      - ./code_src:/app
+      - ./code_src/database.db:/app/database.db
+    ports:
+      - "5000:5000"
+    networks:
+      - webnet
+
+  nodejs:
+    build:
+      context: ./code_src/my_api
+      dockerfile: Dockerfile.node
+    volumes:
+      - ./code_src/my_api:/app
+      - ./code_src/database.db:/app/database.db
+    ports:
+      - "3000:3000"
+    networks:
+      - webnet
+
+networks:
+  webnet:

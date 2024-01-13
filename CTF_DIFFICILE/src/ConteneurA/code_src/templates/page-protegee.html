@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Page Protégée</title>
+    <style>
+        /* Styles existants... */
+
+        .section {
+            margin: 20px;
+            padding: 15px;
+            background-color: #e0e0e0;
+            border-radius: 10px;
+        }
+
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        tr:nth-child(odd) {
+            background-color: #d9d9d9;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Bienvenue dans le Monde des Animes</h1>
+        <p>Explorez un univers fascinant où les histoires captivantes et les personnages colorés prennent vie. Plongez dans l'expérience anime avec des informations, des images, et bien plus encore.</p>
+      
+        <!-- Section de tableau -->
+        <div class="section">
+            <h2>Tableau d'Informations sur les Animes</h2>
+            <table>
+                <tr>
+                    <th>Nom de l'Anime</th>
+                    <th>Genre</th>
+                    <th>Année de Sortie</th>
+                </tr>
+                <tr>
+                    <td>Attack on Titan</td>
+                    <td>Action, Drame, Fantastique</td>
+                    <td>2013</td>
+                </tr>
+                <tr>
+                    <td>My Hero Academia</td>
+                    <td>Super-héros, Action</td>
+                    <td>2016</td>
+                </tr>
+                <tr>
+                    <td>Demon Slayer</td>
+                    <td>Action, Aventure</td>
+                    <td>2019</td>
+                </tr>
+                <!-- Ajoutez plus de lignes au tableau selon vos besoins -->
+            </table>
+            
+        </div>
+
+        <div class="section">
+            <h2>Découvrez le Monde des Animes</h2>
+            <p>Les animes, un art narratif japonais, ont conquis le monde avec leurs histoires captivantes, leurs animations détaillées et leurs personnages uniques. Des séries épiques comme 'Naruto' et 'One Piece' aux chefs-d'œuvre émotionnels comme 'Your Name' et 'Studio Ghibli', chaque anime offre une expérience immersive et inoubliable.</p>
+            
+            <p>Savez-vous que 'Spirited Away' de Hayao Miyazaki est le premier film d'animation non anglophone à remporter l'Oscar du meilleur film d'animation ? Ou que 'One Piece', l'une des séries les plus longues, détient un record Guinness pour le plus grand nombre de copies publiées pour la même série de bandes dessinées par un seul auteur ?</p>
+            
+            <p>Les animes ne sont pas seulement un divertissement, ils sont une fenêtre sur des cultures, des philosophies et des aventures inexplorées. Chaque série vous emmène dans un voyage différent, que ce soit dans des mondes fantastiques ou des récits de vie quotidienne.</p>
+            <!-- Ajoutez plus de contenu textuel ici -->
+        </div>
+        
+    </div>
+
+    <div class="section">
+        <h2>Laissez un commentaire</h2>
+        <p>Quel est votre anime préféré ? Partagez vos pensées ici :</p>
+        <form action="/post-comment" method="post">
+            <textarea name="comment" rows="4" cols="50" placeholder="Votre anime préféré et pourquoi..."></textarea>
+            <br>
+            <input type="submit" value="Envoyer">
+        </form>
+    </div>
+    
+    
+</body>
+</html>
