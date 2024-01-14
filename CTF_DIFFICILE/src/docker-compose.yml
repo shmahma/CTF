@@ -1,0 +1,39 @@
+version: '3'
+services:
+  gateway:
+    build:
+      context: ./Gateway
+      dockerfile: Dockerfile
+    ports:
+      - "2222:22"
+      - "61000-61002:61000-61002"
+  flask:
+    build:
+      context: ./ConteneurA/code_src
+      dockerfile: Dockerfile.flask
+    volumes:
+      - ./ConteneurA/code_src:/app
+      - ./ConteneurA/code_src/database.db:/app/database.db
+      - ./ConteneurA/code_src/my_ssh_key:/root/.ssh/my_ssh_key
+      - ./ConteneurA/code_src/my_ssh_key.pub:/root/.ssh/my_ssh_key.pub
+
+  nodejs:
+    build:
+      context: ./ConteneurA/code_src/my_api
+      dockerfile: Dockerfile.node
+    volumes:
+      - ./ConteneurA/code_src/my_api:/app
+      - ./ConteneurA/code_src/database.db:/app/database.db
+
+  backup:
+    build:
+      context: ./Backup
+      dockerfile: Dockerfile.T
+    volumes:
+      -  ./Backup/my_ssh_key_2:/root/.ssh/my_ssh_key_2
+      -  ./Backup/my_ssh_key_2.pub:/root/.ssh/my_ssh_key_2.pub
+
+
+
+volumes:
+  mysql:
