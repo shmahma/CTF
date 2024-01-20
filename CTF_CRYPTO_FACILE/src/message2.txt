@@ -1,0 +1,11 @@
+Challenge RSA : "Déchiffrement RSA"
+
+Message Chiffré : 
+08241730000123690281308600010615221121000615000102810281028102810281
+
+Clé Publique Utilisée pour le Chiffrement : 
+- Nombre commun de la clé publique et de la clé privée (n) : 3233
+- Second nombre de la clé publique (e, exposant public) : 17
+
+Objectif : 
+Votre mission est de déchiffrer le message ci-dessus. Le message original est un flag au format standard pour un CTF, par exemple "FLAG{votre_texte_ici}". Le flag déchiffré est ce que vous devez soumettre pour compléter ce challenge.
