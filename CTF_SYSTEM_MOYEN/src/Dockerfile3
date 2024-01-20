@@ -1,4 +1,0 @@
-FROM bogem/ftp
-
-
-COPY ./my_bio.txt /home/vsftpd/my_bio.txt
