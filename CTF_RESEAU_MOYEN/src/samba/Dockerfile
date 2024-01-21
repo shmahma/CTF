@@ -4,7 +4,7 @@ RUN apt-get update && apt-get install -y samba
 
 COPY smb.conf /etc/samba/smb.conf
 COPY start.sh /start.sh
-COPY /.secret
+COPY  /.secret /.secret
 
 RUN chmod +x /start.sh
 
