@@ -3,7 +3,8 @@
 # Emplacement des certificats
 SSL_DIR=/etc/nginx/ssl
 mkdir -p $SSL_DIR
-
+flag="Flag{openssl_fl123}"
+encoded_flag=$(echo -n "$flag" | base64)
 # Générez la clé et le certificat du CA (si ce n'est pas déjà fait)
 if [ ! -f $SSL_DIR/ca.key ]; then
     openssl genrsa -out $SSL_DIR/ca.key 2048
@@ -20,7 +21,7 @@ fi
 # Générez la clé et le CSR pour le serveur (avec flag dans le CN)
 if [ ! -f $SSL_DIR/server.key ]; then
     openssl genrsa -out $SSL_DIR/server.key 2048
-    openssl req -new -key $SSL_DIR/server.key -out $SSL_DIR/server.csr -subj "/CN=Flag{Your_Flag_Here}"
+    openssl req -new -key $SSL_DIR/server.key -out $SSL_DIR/server.csr -subj "/CN=$encoded_flag"
     openssl x509 -req -in $SSL_DIR/server.csr -CA $SSL_DIR/intermediate.pem -CAkey $SSL_DIR/intermediate.key -CAcreateserial -out $SSL_DIR/server.crt -days 365 -sha256
 fi
 
