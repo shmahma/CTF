@@ -1,0 +1,35 @@
+version: '3.3'
+
+services:
+  dnsspoofing:
+    build: ./DNSSpoofing
+    ports:
+      - "5366:53/tcp"
+      - "5366:53/udp"
+    volumes:
+      - ./DNSSpoofing/named.conf:/etc/bind/named.conf
+      - ./DNSSpoofing/zones:/etc/bind/zones
+    networks:
+      - custom_network
+    
+
+  samba:
+    build: ./samba
+    ports:
+      - "139:139"
+      - "445:445"
+    volumes:
+      - ./samba/smb.conf:/etc/samba/smb.conf
+      - ./samba/.secret:/.secret
+    networks:
+      - custom_network
+  ssl:
+    build: ./SSL
+    ports:
+      - "443:443"
+    networks:
+      - custom_network
+
+networks:
+  custom_network:
+    driver: bridge
