@@ -1,11 +1,28 @@
+# Use a base image
 FROM python:3.8
+
+# Create a non-root user
+RUN useradd -ms /bin/bash flaskuser
+
+# Set the working directory and change ownership
 WORKDIR /app
+RUN chown -R flaskuser /app
+
+# Copy your application files into the container
 COPY . /app
+
+# Install dependencies
+RUN pip install --no-cache-dir -r requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y openssh-server && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
-COPY start.sh .
+# Switch to the non-root user
+USER flaskuser
+
+# Make sure the start.sh script is executable
 RUN chmod +x start.sh
+
+# Start your Flask application using the start.sh script
 CMD ["/bin/bash", "start.sh"]

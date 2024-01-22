@@ -22,6 +22,7 @@ def export_backup(data, file_path=None):
         
         if file_path is None:
             user_home_dir = os.path.expanduser("~")
+            print(f"User Home Directory: {user_home_dir}")
             file_path = os.path.join(user_home_dir, 'backup.pickle')
         with open(file_path, 'wb') as file:
             file.write(serialized_data)
