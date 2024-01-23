@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  machine:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "2222:22"
+  web-server:
+    build:
+      context: .
+      dockerfile: Dockerfile.T
+    container_name: web
+    restart: always
+    ports:
+      - "80:80"
