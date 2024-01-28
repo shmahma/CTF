@@ -1,6 +1,6 @@
-from flask import Flask,flash,  request, jsonify, render_template, render_template_string, session, redirect, url_for
+from flask import Flask,flash,send_file,  request, jsonify, render_template, render_template_string, session, redirect, url_for
 import sqlite3
-import pickle
+import pickle, io
 import os
 app = Flask(__name__)
 secret_flag = "CTF{you_got_me}"
@@ -16,20 +16,24 @@ def get_db_connection():
     return conn
 
 
-def export_backup(data, file_path=None):
+def export_backup_for_download(data):
+    """
+    Sérialise les données et les prépare pour le téléchargement.
+
+    Args:
+    data: Les données à sérialiser.
+
+    Returns:
+    BytesIO: Un objet BytesIO contenant les données sérialisées.
+    """
     try:
         serialized_data = pickle.dumps(data)
-        
-        if file_path is None:
-            user_home_dir = os.path.expanduser("~")
-            print(f"User Home Directory: {user_home_dir}")
-            file_path = os.path.join(user_home_dir, 'backup.pickle')
-        with open(file_path, 'wb') as file:
-            file.write(serialized_data)
-        
-        return True, f"Sauvegarde réussie dans {file_path}."
+        memory_file = io.BytesIO()
+        memory_file.write(serialized_data)
+        memory_file.seek(0)  # Remet le curseur au début du fichier
+        return memory_file
     except Exception as e:
-        return False, f"Échec de la sauvegarde : {str(e)}"
+        raise e
 
 def import_backup(file_path=None):
     try:
@@ -145,12 +149,8 @@ def admin_save():
         )
     }
 
-    success, message = export_backup(hint_data)
-
-    if success:
-        return f"Configuration des utilisateurs sauvegardée avec succès. {message}"
-    else:
-        return f"Échec de la sauvegarde de la configuration : {message}"
+    memory_file = export_backup_for_download(hint_data)
+    return send_file(memory_file, as_attachment=True, download_name='backup.pickle', mimetype='application/octet-stream')
 
 @app.route('/admin-restore', methods=['POST'])
 def admin_restore():
