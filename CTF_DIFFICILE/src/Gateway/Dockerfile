@@ -1,7 +1,7 @@
 FROM ubuntu:latest
 
 RUN apt-get update && \
-    DEBIAN_FRONTEND=noninteractive apt-get install -y openssh-server passwd sudo
+    DEBIAN_FRONTEND=noninteractive apt-get install -y openssh-server passwd sudo socat
 
 RUN sed -i 's/PermitRootLogin yes/PermitRootLogin no/' /etc/ssh/sshd_config && \
     sed -i 's/#PasswordAuthentication yes/PasswordAuthentication yes/' /etc/ssh/sshd_config && \
@@ -17,6 +17,11 @@ COPY my_ssh_key_2.pub /home/john/
 
 RUN cat /home/john/my_ssh_key_2.pub >> /home/john/.ssh/authorized_keys
 
+COPY my_ssh_key_4.pub /home/john/
+
+RUN cat /home/john/my_ssh_key_4.pub >> /home/john/.ssh/authorized_keys
+
+
 RUN echo "GatewayPorts yes" >> /etc/ssh/sshd_config
 
 RUN mkdir -p /home/john/.ssh && \
@@ -26,4 +31,11 @@ RUN mkdir -p /home/john/.ssh && \
 RUN touch /home/john/.ssh/authorized_keys && \
     chmod 600 /home/john/.ssh/authorized_keys
 
-CMD service ssh start && tail -f /dev/null
+WORKDIR /
+
+COPY start.sh .
+
+RUN chmod +x start.sh
+
+
+CMD ["/bin/sh", "/start.sh"]

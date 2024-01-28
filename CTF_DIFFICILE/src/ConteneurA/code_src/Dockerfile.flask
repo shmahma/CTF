@@ -18,11 +18,15 @@ RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y openssh-server && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
-# Switch to the non-root user
-USER flaskuser
 
-# Make sure the start.sh script is executable
+RUN ssh-keygen -A && \
+    sed -i 's/PermitRootLogin prohibit-password/PermitRootLogin without-password/' /etc/ssh/sshd_config
+
+COPY start.sh .
+EXPOSE 22
 RUN chmod +x start.sh
 
+
+
 # Start your Flask application using the start.sh script
-CMD ["/bin/bash", "start.sh"]
+CMD ["/bin/sh", "start.sh"]

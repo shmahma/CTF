@@ -6,7 +6,11 @@ services:
       dockerfile: Dockerfile
     ports:
       - "2222:22"
-      - "61000-61002:61000-61002"
+      - "61000:61000"
+      - "62501:62501"
+      - "63302:63302"
+      - "64603:64603"
+      - "65104:65104"
   flask:
     build:
       context: ./ConteneurA/code_src
@@ -24,16 +28,24 @@ services:
     volumes:
       - ./ConteneurA/code_src/my_api:/app
       - ./ConteneurA/code_src/database.db:/app/database.db
+      - ./ConteneurA/code_src/my_api/my_ssh_key_4:/root/.ssh/my_ssh_key_4
+      - ./ConteneurA/code_src/my_api/my_ssh_key_4.pub:/root/.ssh/my_ssh_key_4.pub
 
-  backup:
+  backup_w:
     build:
       context: ./Backup
       dockerfile: Dockerfile.T
     volumes:
       -  ./Backup/my_ssh_key_2:/root/.ssh/my_ssh_key_2
       -  ./Backup/my_ssh_key_2.pub:/root/.ssh/my_ssh_key_2.pub
-
-
+  backup_m:
+    container_name: mysql
+    build: ./Backup/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: "J@@@C000BBY1992"
+      MYSQL_DATABASE: "my-wonderful-website"
+    volumes:
+      - dbData:/var/lib/mysql
 
 volumes:
-  mysql:
+  dbData:

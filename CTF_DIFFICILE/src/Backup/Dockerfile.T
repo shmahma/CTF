@@ -1,11 +1,12 @@
 FROM php:8.1-apache
 
-COPY images /var/www/html
-COPY info.txt /var/www/html
-COPY indice.txt /var/www/html
-COPY ident.txt /var/www/html
-COPY mail.txt /var/www/html
-COPY message.html /var/www/html
+COPY index.php	/var/www/html
+COPY enigme1.php /var/www/html
+COPY enigme2.php /var/www/html
+COPY enigme3.php /var/www/html
+COPY enigme4.php /var/www/html
+COPY enigme5.php /var/www/html
+COPY content.php /var/www/html
 
 RUN apt-get update && \
     apt-get install -y openssh-server && \
@@ -20,9 +21,6 @@ COPY start.sh .
 
 RUN chmod +x start.sh
 
-COPY apache-directory-listings.conf /etc/apache2/sites-available/000-default.conf
-
-RUN a2enmod rewrite
 
 CMD ["/bin/sh", "/start.sh"]
 
