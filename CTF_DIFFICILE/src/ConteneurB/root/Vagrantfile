@@ -1,0 +1,30 @@
+Vagrant.configure("2") do |config|
+  config.vm.box = "ubuntu/bionic64"
+  config.vm.network "forwarded_port", guest: 22, host: 2224
+  config.vm.provider "virtualbox" do |vb|
+    vb.memory = "1024"
+  end
+
+  config.vm.provision "shell", inline: <<-SHELL
+    # Créer un utilisateur avec des permissions excessives
+    apt-get update
+    apt-get install -y zip
+    useradd -m user
+    echo "user:password" | chpasswd
+    mkdir /home/user/excessive_permissions
+    echo "Informations sensibles" > /home/user/excessive_permissions/sensitive_info.txt
+    chmod 777 /home/user/excessive_permissions
+
+    # Configurer la connexion automatique de l'utilisateur au démarrage
+    echo "exec su -l user" >> /home/user/.bashrc
+
+    # Fixer le mot de passe de root à "finalstep"
+    echo "root:finalstep" | chpasswd
+
+    # Créer un répertoire protégé par mot de passe
+    mkdir /home/user/protected_directory
+    echo "K5WTC43EKZWFQZKIOBVVEMK2GMFA====" > /home/user/protected_directory/protected_file.txt
+    zip -q -r -P protectdir /home/user/excessive_permissions/protected_directory.zip /home/user/protected_directory
+    rm -rf /home/user/protected_directory
+  SHELL
+end
