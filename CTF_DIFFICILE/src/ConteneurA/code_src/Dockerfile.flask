@@ -1,12 +1,8 @@
 # Use a base image
 FROM python:3.8
 
-# Create a non-root user
-RUN useradd -ms /bin/bash flaskuser
-
 # Set the working directory and change ownership
 WORKDIR /app
-RUN chown -R flaskuser /app
 
 # Copy your application files into the container
 COPY . /app
